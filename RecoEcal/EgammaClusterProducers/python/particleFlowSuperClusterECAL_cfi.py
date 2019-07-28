@@ -161,3 +161,8 @@ from Configuration.Eras.Modifier_pp_on_AA_2018_cff import pp_on_AA_2018
 pp_on_AA_2018.toModify(particleFlowSuperClusterECAL, useDynamicDPhiWindow = False)
 pp_on_AA_2018.toModify(particleFlowSuperClusterECAL, phiwidth_SuperClusterBarrel = 0.20)
 pp_on_AA_2018.toModify(particleFlowSuperClusterECAL, phiwidth_SuperClusterEndcap = 0.20)
+
+#light by light uses 106X regressions in which this bug was fixed so no 
+#longer needs to be emulated
+lightByLightLowPt.toModify(particleFlowSuperClusterECAL.regressionConfig,
+                           applySigmaIetaIphiBug = False)
