@@ -40,7 +40,8 @@ particleFlowSuperClusterECALBox = cms.EDProducer(
        uncertaintyKeyEE = cms.string('pfscecal_EEUncertainty_offline_v2'),
        vertexCollection = cms.InputTag("offlinePrimaryVertices"),
        ecalRecHitsEB = cms.InputTag('ecalRecHit','EcalRecHitsEB'),
-       ecalRecHitsEE = cms.InputTag('ecalRecHit','EcalRecHitsEE')
+       ecalRecHitsEE = cms.InputTag('ecalRecHit','EcalRecHitsEE'),
+       applySigmaIetaIphiBug = cms.bool(True)
        ),
 
     #threshold for final SuperCluster Et
@@ -115,7 +116,8 @@ particleFlowSuperClusterECALMustache = cms.EDProducer(
        uncertaintyKeyEE = cms.string('pfscecal_EEUncertainty_offline_v2'),
        vertexCollection = cms.InputTag("offlinePrimaryVertices"),
        ecalRecHitsEB = cms.InputTag('ecalRecHit','EcalRecHitsEB'),
-       ecalRecHitsEE = cms.InputTag('ecalRecHit','EcalRecHitsEE')
+       ecalRecHitsEE = cms.InputTag('ecalRecHit','EcalRecHitsEE'),
+       applySigmaIetaIphiBug = cms.bool(True)
        ),
        
     #threshold for final SuperCluster Et
@@ -166,3 +168,7 @@ egamma_lowPt_exclusive.toModify(particleFlowSuperClusterECAL,
                            thresh_PFClusterSeedBarrel = 0.5,
                            thresh_PFClusterSeedEndcap = 0.5)
 
+#light by light uses 106X regressions in which this bug was fixed so no 
+#longer needs to be emulated
+egamma_lowPt_exclusive.toModify(particleFlowSuperClusterECAL.regressionConfig,
+                           applySigmaIetaIphiBug = False)
